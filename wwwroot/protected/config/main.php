@@ -7,7 +7,9 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Sistema de gestion de copias',
+	'defaultController'=>'site',
+	'theme'=>'boot',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -28,16 +30,29 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		*/
+		'gii'=>array(
+            'generatorPaths'=>array(
+                'bootstrap.gii',
+            ),
+            'class'=>'system.gii.GiiModule',
+            'password'=>'Poi653241',
+            'ipFilters'=>array('127.0.0.1','::1'),
+        ),
 	),
 
 	// application components
 	'components'=>array(
+		
+		'bootstrap'=>array(
+            'class'=>'bootstrap.components.Bootstrap',
+        ),
+
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -46,7 +61,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
+		
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
