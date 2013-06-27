@@ -1,3 +1,4 @@
+<?php Yii::app()->bootstrap->register(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

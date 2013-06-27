@@ -5,11 +5,18 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+//Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Sistema de gestion de copias',
 	'defaultController'=>'site',
 	'theme'=>'boot',
+
+	'aliases' => array(
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+    ),
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -18,6 +25,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'bootstrap.helpers.TbHtml',
 	),
 
 	'modules'=>array(
@@ -31,20 +39,20 @@ return array(
 		),
 		*/
 		'gii'=>array(
-            'generatorPaths'=>array(
-                'bootstrap.gii',
-            ),
+			'generatorPaths' => array('bootstrap.gii'),
+			
             'class'=>'system.gii.GiiModule',
             'password'=>'Poi653241',
             'ipFilters'=>array('127.0.0.1','::1'),
+            
         ),
 	),
 
 	// application components
 	'components'=>array(
 		
-		'bootstrap'=>array(
-            'class'=>'bootstrap.components.Bootstrap',
+        'bootstrap' => array(
+            'class' => 'application.extensions.bootstrap.components.TbApi',   
         ),
 
 		'user'=>array(
@@ -61,20 +69,21 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
+		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
+		*/
 		// uncomment the following to use a MySQL database
-		/*
+		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=sgc',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'Poi653241',
 			'charset' => 'utf8',
 		),
-		*/
+		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
